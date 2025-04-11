@@ -112,7 +112,7 @@ namespace WordScramble
             /// <summary>
             /// Checks if the player's guess is correct.
             /// </summary>
-            bool isCorrect = userInput.Equals(word);
+            bool isCorrect = userInput == word;
 
             if (isCorrect)
             {
