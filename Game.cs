@@ -26,6 +26,7 @@ namespace WordScramble
         {
             wordProvider = new WordProvider();
             gameStats = new GameResult[5];
+
         }
 
         /// <summary>
@@ -47,7 +48,8 @@ namespace WordScramble
                 string choice = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                         .Title("[bold yellow]Word Scramble[/]")
-                        .AddChoices("Start Game", "View Game Stats", "Quit"));
+                        .AddChoices("Start Game", "View Game Stats",
+                        "Word Percentages", "Quit"));
 
                 switch (choice)
                 {
@@ -56,6 +58,10 @@ namespace WordScramble
                         break;
                     case "View Game Stats":
                         ShowGameStats();
+                        break;
+
+                    case "Word Percentages":
+                        ShowGamePercentages();
                         break;
                     case "Quit":
                         return;
@@ -175,6 +181,38 @@ namespace WordScramble
             AnsiConsole.Markup(
                 "\n[bold green]Press Enter to Return to Menu...[/]");
             Console.ReadLine();
+        }
+
+        private void ShowGamePercentages()
+        {
+            AnsiConsole.Clear();
+            Table table = new Table();
+            table.AddColumn("#");
+            table.AddColumn("Word");
+            table.AddColumn("Time it has appeared (%)");
+
+            for (int i = 0; i < gameStats.Length; i++)
+            {
+                if (gameStats[i] == null)
+                {
+
+                }
+
+                else if (gameStats[i] != null)
+                {
+                    table.AddRow(
+                   (i + 1).ToString(),
+                   gameStats[i].Word.ToString());
+                }
+
+            }
+
+            AnsiConsole.Write(table);
+            AnsiConsole.Markup(
+                "\n[bold green]Press Enter to Return to Menu...[/]");
+            Console.ReadLine();
+
+
         }
     }
 }
