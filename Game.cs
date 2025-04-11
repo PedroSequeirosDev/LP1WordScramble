@@ -117,11 +117,11 @@ namespace WordScramble
                 // Shift existing entries
                 for (int i = gameStats.Length - 1; i > 0; i--)
                 {
-                    // ////////// => TO IMPLEMENT <= //////////// //
+                    gameStats[i] = gameStats[i - 1];
                 }
 
                 // Add new result at the beginning
-                gameStats[0] = // ////////// => TO IMPLEMENT <= //////////// //
+                gameStats[0] = new GameResult(word, timeTaken);
             }
             else
             {
@@ -157,12 +157,15 @@ namespace WordScramble
             {
                 if (gameStats[i] == null)
                 {
-                    // ////////// => TO IMPLEMENT <= //////////// //
+
                 }
 
                 // Add row to table
                 // Table.AddRow() only accepts strings
-                // ////////// => TO IMPLEMENT <= //////////// //
+                table.AddRow(
+                   (i + 1).ToString(),
+                   gameStats[i].Word,
+                   gameStats[i].TimeTaken.ToString("F2"));
             }
 
             AnsiConsole.Write(table);
