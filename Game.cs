@@ -106,6 +106,8 @@ namespace WordScramble
             string userInput = AnsiConsole.Ask<string>(
                 "\n[bold cyan]Your Guess (type the word):[/] ");
 
+            userInput = userInput.ToUpper();
+
             stopwatch.Stop();
             double timeTaken = stopwatch.Elapsed.TotalSeconds;
 
